@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<title>Url Histórico</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/assets/css/w3.css">
+<script src="/assets/js/sweetalert.js"></script>
+<body>
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="#home" class="w3-bar-item w3-button"><b>URL</b> H</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right">
+      <a href="#conocenos" class="w3-bar-item w3-button w3-hide-small">Conoce el Proyecto</a>
+      <a class="w3-btn w3-white w3-border" onclick="login('id01')">Ingresar</a>
+      <a class="w3-btn w3-black" onclick="login('id02')">Registrarse</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <img class="w3-image" src="/assets/img/portada.jpg" alt="Architecture" width="1500" height="800">
+  <div class="w3-display-middle w3-margin-top w3-center">
+    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>URL</b></span> <span class="w3-hide-small w3-text-light-grey">Histórico</span></h1>
+  </div>
+</header>
+
+  
+
+
+  <!-- About Section -->
+  <div id="conocenos">
+    <div class="w3-container w3-padding-32" id="about" style="max-width:950px; margin-left:auto; margin-right:auto;">
+      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Conoce nuestro proyecto</h3>
+      <p>El valuador tiene el compromiso de resguardar sus avalúos para resolver cualquier controversia futura, estos serán indispensables para llevar a cabo cualquier aclaración en caso de ser necesario.<br><br>
+        Por lo tanto el manejo sistemático y fiable de la información incluida en los avalúos y la información histórica es muy útil, una parte de esta información son las fuentes que conforman los comparables incluidos en el enfoque de mercado, esta información actualmente se obtiene mediante diversas páginas de internet dedicadas a promover la venta de bienes inmuebles, esto implica que la disponibilidad de esta información esta sujeta a la venta de dichos inmuebles, por lo que al momento de dejar de ser promovida es eliminada.<br><br>
+        El proyecto busca dar una respuesta a este problema, brindando las herramientas necesarias para que sea posible almacenar las direcciones de internet asociadas a imágenes de la fecha y la hora en la que fue tomada esta información, así como proporcionar algunas otras herramientas como son el acortador de urls y generación de códigos Qr tan útiles al momento de elaborar los formatos de avalúo.<br><br>
+
+        Nuestro proyecto lleva el nombre de:<br><br>
+        
+        <b>"DESARROLLO DE UN SISTEMA WEB PARA LLEVAR EL CONTROL HISTÓRICO DE COMPARABLES"</b><br><br>
+
+      </p>
+    </div>
+  
+    <div class="w3-row-padding w3-grayscale" style="max-width:650px; margin-left:auto; margin-right:auto;">
+      <div class="w3-col m6 w3-margin-bottom">
+        <!-- <img src="/team2.jpg" alt="John" style="width:100%"> -->
+        <h3>Ing. Fabián Espinoza Garza</h3>
+        <p class="w3-opacity">Aspirante a Mtro. en Valuación Inmobiliaria</p>
+        <p></p>
+        <!-- <p><button class="w3-button w3-light-grey w3-block">Contact</button></p> -->
+      </div>
+      <div class="w3-col m6 w3-margin-bottom">
+        <!-- <img src="/team1.jpg" alt="Jane" style="width:100%"> -->
+        <h3>Dr. Luis David Pérez Castro</h3>
+        <p class="w3-opacity">Director de Tesis</p>
+        <p></p>
+        <!-- <p><button class="w3-button w3-light-grey w3-block">Contact</button></p> -->
+      </div>
+
+    </div>
+  </div>
+
+
+  <img src="/assets/img/footer.jpg" class="w3-image" style="width:100%">
+
+
+    <!-- Contact Section -->
+<div id="registrate" style="max-width:650px; margin:5em auto 8em auto;">
+    <div class="w3-container w3-padding-32" id="contact">
+      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">¿Cómo solicitar tu cuenta?</h3>
+      Envíanos un correo a <a href="mailto:{correo}">{correo}</a> solicitando tu cuenta o las cuentas que necesites para el colegio de valuadores de tu ciudad, con gusto los incluiremos para hacer crecer nuestro proyecto. También puedes registrarte haciendo <a style="cursor:pointer;" onclick="login('id02')"><b>click aquí </b></a>
+      
+      
+    </div>
+</div>
+
+
+
+
+<!-- End page content -->
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Desarrollado por <a href="https://fabianespinoza.com/" title="sitio personal" target="_blank" class="w3-hover-text-green">Fabián Espinoza</a></p>
+</footer>
+
+<!-- Modal to login -->
+  <div id="id01" class="w3-modal" >
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+  
+      <div class="w3-center"><br>
+        <img src={imagen} alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+      </div>
+
+      <form class="w3-container" method="post">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright"><h3>&nbsp;&times;&nbsp;</h3></span>
+        <div class="w3-section">
+          <label><b>Usuario</b></label>
+          <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Escriba su usuario" name='username' required>
+          <label><b>Contraseña</b></label>
+          <input class="w3-input w3-border" type="password" type="text" placeholder="Escriba su contraseña" name='password' required>
+          <button class="w3-button w3-block w3-blue w3-section w3-padding" type="submit">Entrar</button>
+          
+        </div>
+      </form>
+    </div> 
+  </div> 
+
+  <!-- Modal to register-->
+  <div id="id02" class="w3-modal" >
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+  
+      <div class="w3-center"><br>
+        <img src={img-registro} alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+      </div>
+
+      <form  class="w3-container" method="post">
+        <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright"><h3>&nbsp;&times;&nbsp;</h3></span>
+        <div class="w3-section">
+          <label><b>Email</b></label>
+          <input class="w3-input w3-border w3-margin-bottom" type="email" placeholder="Su correo será el nombre de usuario" name='email' required>
+          <label><b>Nombre</b></label>
+          <input class="w3-input w3-border" type="text" type="text" placeholder="" name='nombre' required>
+          <button class="w3-button w3-block w3-blue w3-section w3-padding" type="submit">Registrarse</button>
+          <small class="w3-yellow w3-right p m">Recibirá en su correo los datos de acceso</small>
+          
+        </div>
+      </form>
+    </div> 
+  </div> 
+
+            
+</body>
+<link rel="stylesheet" href="/assets/css/style.css">
+<script>
+  function showForm(id){
+    document.getElementById(id).style.display='block';
+  }
+  function login(id){
+    setTimeout(showForm(id), 1); // set timout 
+  }
+</script>
+</html>
