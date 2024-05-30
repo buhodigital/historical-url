@@ -52,6 +52,27 @@ class ControladorRegistroUrl{
                     </div>
                     
                     <div class="w3-row w3-section">
+                      <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-home"></i></div>
+                        <div class="w3-rest">
+                          <input class="w3-input w3-border" name="construccion" type="number" step="0.01" max="999999999.99" placeholder="Superficie de construcción en M &sup2;" style="text-transform:uppercase">
+                        </div>
+                    </div>    
+                    
+                    <div class="w3-row w3-section">
+                      <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-area-chart "></i></div>
+                        <div class="w3-rest">
+                          <input class="w3-input w3-border" name="terreno" type="number" step="0.01" max="999999999.99" placeholder="Superficie de terreno en M &sup2;" style="text-transform:uppercase">
+                        </div>
+                    </div>      
+
+                    <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-money "></i></div>
+                      <div class="w3-rest">
+                        <input class="w3-input w3-border" name="precio" type="number" step="0.01" max="999999999.99" placeholder="Precio de venta" style="text-transform:uppercase">
+                      </div>
+                    </div>  
+
+                    <div class="w3-row w3-section">
                       <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
                         <div class="w3-rest">
                         <textarea class="w3-input w3-border" name="nota" rows="5" style="resize:none" spellcheck="false" data-ms-editor="true" placeholder="Nota (Máximo 240 caracteres)" maxlength="240"></textarea>
@@ -79,7 +100,7 @@ class ControladorRegistroUrl{
     $lastReg=$this->ultimoRegistro()+1;
     $cadena_aleatoria=$this->generarCadenaAleatoria();
     $url_id=$cadena_aleatoria.$lastReg;
-
+  //$datos=> sUrl, sNombreCliente, nSupConst, nSupTerr, nPrecioVenta, sNota, kUsuario
   if(!empty($datos[0])){
     $registrar = new ModeloRegistroUrl;
     //$datos=> sUrl, sNombreCliente, sNota, kUsuario
@@ -145,7 +166,10 @@ class ControladorRegistroUrl{
     $contenido.= '<div class="w3-col m6  p"><b>Qr :</b> <div id="codigo-qr"></div> 
                     <button class="w3-btn w3-white w3-border w3-border-blue w3-round-xlarge m noprint" onclick="descargarImagen()">Descargar Qr</button>
                   </div>';
-    $contenido.= '<div class="w3-col m6  p"><b>ID: </b>'.$r['sNombreCliente'].'</div>';    
+    $contenido.= '<div class="w3-col m6  p"><b>ID: </b>'.$r['sNombreCliente'].'</div>'; 
+    $contenido.= '<div class="w3-col m6  p"><b>Superficie de construcción: </b>'.$r['nSupConst'].' m<sup>2</sup></div>';
+    $contenido.= '<div class="w3-col m6  p"><b>Superficie de terreno: </b>'.$r['nSupTerr'].' m<sup>2</sup></div>';
+    $contenido.= '<div class="w3-col m6  p"><b>Precio de venta: </b>$'.number_format($r['nPrecioVenta'], 2, '.', ',').'</div>';   
     $contenido.= '<div class="w3-col m6  p"><b>Nota: </b>'.$r['sNota'].'</div>';    
     $contenido.= '<div class="w3-col m6  p"><b>Fecha/hora: </b>'.$r['dtFecha'].'</div>';   
     $contenido.='<div class="w3-col s12">
@@ -370,7 +394,7 @@ class ControladorRegistroUrl{
                     <td>'.$value['dtFecha'].'</td>
                      <td>'.$value['sNombreCliente'].'</td>
                      <td><a target="_blank"  href="'.$GLOBALS['url']."/option/registrourl/".$value['kUrl'].'/0">Ver datos de Url <i class="w3-large fa fa-paperclip w3-xlarge"></i></a></td>
-                     <td><a onclick="confirmar(\'c-'.$value['kUrl'].'\')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                     <td><a class="p pointer" onclick="confirmar(\'c-'.$value['kUrl'].'\')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                      <a id="c-'.$value['kUrl'].'" href="'.$GLOBALS['url']."/option/registrourl/borrar_url/".$value['kUrl'].'" class="w3-button w3-red w3-small hide">Confirma eliminar</a>
                      </td>
                   </tr>';
@@ -424,6 +448,29 @@ class ControladorRegistroUrl{
                             <input class="w3-input w3-border" name="cliente" type="text" placeholder="Identificador" style="text-transform:uppercase" value="{$r['sNombreCliente']}" >
                           </div>
                       </div>
+
+                      <div class="w3-row w3-section">
+                      <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-home"></i></div>
+                        <div class="w3-rest">
+                          <input class="w3-input w3-border" name="construccion" type="number" step="0.01" max="999999999.99" placeholder="Superficie de construcción en M &sup2;"  value="{$r['nSupConst']}">
+                        </div>
+                    </div>    
+                    
+                    <div class="w3-row w3-section">
+                      <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-area-chart "></i></div>
+                        <div class="w3-rest">
+                          <input class="w3-input w3-border" name="terreno" type="number" step="0.01" max="999999999.99" placeholder="Superficie de terreno en M &sup2;" value="{$r['nSupTerr']}">
+                        </div>
+                    </div>      
+
+                    <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-money "></i></div>
+                      <div class="w3-rest">
+                        <input class="w3-input w3-border" name="precio" type="number" step="0.01" max="999999999.99" placeholder="Precio de venta" value="{$r['nPrecioVenta']}">
+                      </div>
+                    </div>
+
+
                       
                       <div class="w3-row w3-section">
                         <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
@@ -460,7 +507,7 @@ class ControladorRegistroUrl{
     }
 
     public function actualizarNota($datos){
-      //$datos=> kUrl, sNombreCliente, sNota
+      //$datos=> kUrl, sNombreCliente, nSupConst, nSupTerr, nPrecioVenta, sNota
       $actualizar = new ModeloRegistroUrl;
       $resultado=$actualizar->actualizarNota($datos);
       if($resultado){

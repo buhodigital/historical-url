@@ -14,10 +14,12 @@ class ControlVistaPrincipal{
  
   public function dashBoard(){
     $contenido1=$this->ultimosRegistros();
+    $contenido2=$this->listaSujetos();
     $diccionario = array(
       'titulo'=>'<h5><b><i class="fa fa-dashboard"></i> Vista general</b></h5>',
       'contenido'=>'',
-      'ultimos_registros'=>$contenido1
+      'ultimos_registros'=>$contenido1,
+      'ultimos_sujetos'=>$contenido2
     );
        //Generación de la vista de la página inicial
     $this->mostrarVista($diccionario);
@@ -54,10 +56,35 @@ class ControlVistaPrincipal{
     $contenido.='</table>
                   </div>
                   <br>
-                  <a class="w3-button w3-dark-grey" href="'.$GLOBALS['url'].'/option/registrourl/datos/0">Nuevo registro  <i class="fa fa-arrow-right"></i></a>
+                  <a class="w3-button w3-dark-grey" href="'.$GLOBALS['url'].'/option/registrourl/datos/0"><i class="fa fa-plus-circle"></i> URL  <i class="fa fa-arrow-right"></i></a>
                 </div>
                 <hr>';
         return $contenido;
+  }
+
+  public function listaSujetos(){
+    $usuario = $GLOBALS['usuario_id'];
+    $ultimo_registro = new ModeloDashboard;
+    $r=$ultimo_registro->listaSujetos($usuario);
+    //tabla de w3.css
+    $contenido="<div class='scroll'><div class='w3-container'><small><i class='fa fa-info-circle'></i> En el enlace 'editar' Podrás visualizar y modificar los datos de los sujetos</small>
+    <table class='w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white'>";
+    $contenido.="<tr>
+                  <th>Editar</th>
+                  <th>Nombre del solicitante</th>
+                  <th>Fecha del avalúo</th>
+                  </tr>";
+    foreach ($r as $key => $value) {
+      $contenido.="<tr><td><a target='_blank' href='".$GLOBALS['url']."/option/sujeto/".$value['kSujeto']."/0'><i class='fa fa-edit'></i></a></td><td>".$value['sNombreSolicita']."</td><td>".$value['dtFechaAvaluo']."</td>
+      </tr>";
+    }
+    $contenido.="</table>
+    <br>
+    <a class='w3-button w3-dark-grey' href='".$GLOBALS['url']."/option/sujeto/datos/0'><i class='fa fa-user-plus'></i> Sujeto  <i class='fa fa-arrow-right'></i></a>
+    </div>
+    </div>";
+
+     return $contenido;
   }
   
  }

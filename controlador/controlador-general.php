@@ -3,16 +3,16 @@ include_once('modelo/modelo-general.php');
 #//////////Variables globales///////////////
   # Datos de hora
   date_default_timezone_set('America/Mazatlan');
-  #Generales  
+  #Generales //urlcomparable.com // urlcomp.com  
   //$url = "http://" . $_SERVER['SERVER_NAME']."/web/valuacion";
-  $url="tuurl.com"; 
+  $url="https://urlh.org"; 
   $url_externo = "https://"."";
-  $correo_admin="tuemail@tuurl.com"; //correo de administrador
+  $correo_admin="contacto@urlh.org"; //correo de administrador
 
   $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
   // Agrega tu clave API >>> consíguela en http://screenshotmachine.com
-  $apiKey = "tuapikey"; 
+  $apiKey = "28ef78"; 
 
 #Inicia Revisión de sesión
 if(isset($_SESSION['usuario_id'])) {
