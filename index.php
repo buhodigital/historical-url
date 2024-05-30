@@ -5,13 +5,16 @@ include_once('controlador/controlador-general.php');
 include_once('controlador/controlador-dashboard.php');
 include_once('controlador/controlador-registrourl.php');
 include_once('controlador/controlador-sujeto.php');
+include_once('assets/php/fpdf/fpdf.php');
 include_once('controlador/controlador-reportes.php');
 
 /*Verificación de sesion*/
 if(isset($_SESSION['usuario_id'])) {
   /*Encabezado*/
-  include_once('assets/header.php');
-  include_once('assets/sidebar.php');
+  if($_GET['ruta']!=='reportes'){
+    include_once('assets/header.php');
+    include_once('assets/sidebar.php');
+  }
     /*Rutas disponibles*/
     if(isset($_GET['ruta'])){
       #Vistas con ruta
