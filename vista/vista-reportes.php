@@ -3,13 +3,13 @@ if(isset($_GET['ruta']) && $_GET['ruta']=='reportes'){
     #Instancia de ctr reportes
     $vista= new ControladorReportes;
     switch ($_GET['action']) {
-        case 'sujeto-xls':
+        case 'homologacion':
             $d=explode('-',$_GET['status']);
-            $vista->reporteSujetoXls($d[1]);
+            $vista->reporteHomologacion($d[1]);
             break;
-        case 'sujeto-pdf':
+        case 'opinion-valor':
             $d=explode('-',$_GET['status']);
-            $vista->reporteSujetoPdf($d[1]);
+            $vista->reporteOpinionValor($d[1]);
         default:
             # code...
             break;

@@ -42,6 +42,38 @@ if(isset($_GET['ruta']) && $_GET['ruta']=='sujeto'){
                     $vista->inicio();
                 }
             break;
+            case 'sujeto-xls':
+                $d=explode('-',$_GET['status']);
+                $vista->reporteSujetoXls($d[1]);
+                break;                
+            case 'sujeto-pdf':
+                $d=explode('-',$_GET['status']);
+                $vista->reporteSujetoPdf($d[1]);
+                break;
+            case 'captura-homologacion':
+                $d=explode('-',$_GET['status']);
+                $datos=array();
+                //$datos: [0]=get(kSujeto), post1([1]=ubicacion, [2]=servicios, [3]=conservacion, [4]=proyecto,[5]=demanda), [6]=cus, [7]=n-comp,[8...]=post2comparables(negociacio-id, ubicacion-id, servicios-id, conservacion-id, proyecto-id)
+                array_push($datos,$d[1],$_POST['ubicacion'],$_POST['servicios'],$_POST['conservacion'],$_POST['proyecto'],$_POST['demanda'],$_POST['cus'],$_POST['n-comp'],$_POST['comparables']);
+                $comparables=explode('-',$_POST['comparables']);
+                    for ($i=0; $i < $_POST['n-comp']; $i++) { 
+                        $comparables=explode(',',$_POST['comparables']);
+                        array_push($datos,$_POST['negociacion-'.$comparables[$i]],$_POST['ubicacion-'.$comparables[$i]],$_POST['servicios-'.$comparables[$i]],$_POST['conservacion-'.$comparables[$i]],$_POST['proyecto-'.$comparables[$i]]);
+                    }
+                $vista->capturaHomologacion($datos);
+                break;
+            case 'actualizar-homologacion':
+                $d=explode('-',$_GET['status']);
+                $datos=array();
+                //$datos: [0]=get(kSujeto), post1([1]=ubicacion, [2]=servicios, [3]=conservacion, [4]=proyecto,[5]=demanda), [6]=cus, [7]=n-comp,[8...]=post2comparables(negociacio-id, ubicacion-id, servicios-id, conservacion-id, proyecto-id)
+                array_push($datos,$d[1],$_POST['ubicacion'],$_POST['servicios'],$_POST['conservacion'],$_POST['proyecto'],$_POST['demanda'],$_POST['cus'],$_POST['n-comp'],$_POST['comparables']);
+                $comparables=explode('-',$_POST['comparables']);
+                    for ($i=0; $i < $_POST['n-comp']; $i++) { 
+                        $comparables=explode(',',$_POST['comparables']);
+                        array_push($datos,$_POST['negociacion-'.$comparables[$i]],$_POST['ubicacion-'.$comparables[$i]],$_POST['servicios-'.$comparables[$i]],$_POST['conservacion-'.$comparables[$i]],$_POST['proyecto-'.$comparables[$i]]);
+                    }
+                $vista->actualizarHomologacion($datos);
+                break;
             case 'borrar':
                 //se recibe kEnlaceUS y kSujeto
                 $d=explode('-',$_GET['status']);
@@ -79,7 +111,26 @@ if(isset($_GET['ruta']) && $_GET['ruta']=='sujeto'){
                 if($r){
                     header('Location: '.$GLOBALS['url'].'/option/sujeto/buscar/b');
                 }
-                break;
+            break;
+            case 'opinion-captura':
+                $d=explode('-',$_GET['status']);
+                $validar= new ControladorSujeto;
+                $v=$validar->validarOpinion($d[1]);
+                if($v){
+                    $vista->actualizarOpinion($d[1]);
+                }else{
+                    $vista->capturaOpinion($d[1]);
+                }
+                
+            break;
+            case 'borrar-opinion':
+                $d=explode('-',$_GET['status']);
+                $borrar= new ControlGeneral;
+                $r=$borrar->borrar('t_opinion_valor','fkSujeto',$d[1]);
+                if($r){
+                    header('Location: '.$GLOBALS['url'].'/option/sujeto/'.$d[1].'/1');
+                }
+            break;
             case 'borrar-informacion':
                 //se recibe kEnlaceUS y kSujeto
                 $d=explode('-',$_GET['status']);

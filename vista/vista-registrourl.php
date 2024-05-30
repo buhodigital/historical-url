@@ -4,11 +4,14 @@ if(isset($_GET['ruta']) && $_GET['ruta']=='registrourl'){
     
     switch ($_GET['action']) {
         case 'agregar':
-            //$datos=> sUrl, sNombreCliente, sNota, kUsuario    #Cliente se convierte en upercase para maximizar coincidencias
-            $cleanChar=new ControlGeneral;
+            //$datos=> sUrl, sNombreCliente, nSupConst, nSupTerr, nPrecioVenta, sNota, kUsuario    #Cliente se convierte en upercase para maximizar coincidencias
+            //$cleanChar=new ControlGeneral;
             $nota_fit=substr($_POST['nota'],0,240);
             $datos=array();
-            array_push($datos,$_POST['url'],strtoupper($_POST['cliente']),$nota_fit,$_POST['usuario']);
+            ($_POST['construccion']=="")? $construccion=0: $construccion=$_POST['construccion'];
+            ($_POST['terreno']=="")? $terreno=0: $terreno=$_POST['terreno'];
+            ($_POST['precio']=="")? $precio=0: $precio=$_POST['precio'];
+            array_push($datos,$_POST['url'],strtoupper($_POST['cliente']),$construccion,$terreno,$precio,$nota_fit,$_POST['usuario']);
             $vista->registrarUrl($datos);
             break;
         case 'buscar':
@@ -27,8 +30,11 @@ if(isset($_GET['ruta']) && $_GET['ruta']=='registrourl'){
         case 'modificar':
             $nota_fit=substr($_POST['nota'],0,240);
             $datos=array();
-            //$datos=> kUrl, sNombreCliente, sNota
-            array_push($datos,$_POST['kUrl'],strtoupper($_POST['cliente']),$nota_fit);
+            //$datos=> kUrl, sNombreCliente, nSupConst, nSupTerr, nPrecioVenta, sNota
+            ($_POST['construccion']=="")? $construccion=0: $construccion=$_POST['construccion'];
+            ($_POST['terreno']=="")? $terreno=0: $terreno=$_POST['terreno'];
+            ($_POST['precio']=="")? $precio=0: $precio=$_POST['precio'];
+            array_push($datos,$_POST['kUrl'],strtoupper($_POST['cliente']),$construccion,$terreno,$precio,$nota_fit);
             $vista->actualizarNota($datos);
             break;
         case 'agregar_imagen':
