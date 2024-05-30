@@ -14,6 +14,16 @@ class ModeloDashboard extends Conexion {
     
     }
 
+    public function listaSujetos($usuario){
+      $this->query="SELECT * FROM t_sujeto 
+                    WHERE fkUsuario = $usuario
+                      AND bDisponible = '1'
+                      ORDER BY kSujeto DESC  LIMIT 3";
+      $result=$this->get_results_from_query();
+      $r= $this->rows;
+      return $r;
+  }   
+
 }
 
 ?>

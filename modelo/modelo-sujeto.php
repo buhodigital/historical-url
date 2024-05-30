@@ -107,5 +107,42 @@ class ModeloSujeto extends Conexion {
         return $r;
     }
 
+    public function guardarHomologacion($sujeto,$datos){
+        $this->query="
+        INSERT INTO t_opinion_valor (fkSujeto,sOpinionValor,bDisponible) 
+        VALUES ('".$sujeto."','".$datos."','1')";
+        $result=$this->execute_single_query();
+        return $result;
+    }
+
+    public function validarOpinion($sujeto){
+        //validar si existe por lo menos un registro de opinion de valor
+        $this->query="SELECT * FROM t_opinion_valor WHERE fkSujeto='".$sujeto."' AND bDisponible=1";
+        $this->get_results_from_query();
+        $r= $this->rows;
+        return $r;
+
+    }
+
+    public function datosCaracteristicas($kSujeto){
+        $this->query="SELECT * FROM t_opinion_valor WHERE fkSujeto='".$kSujeto."'AND bDisponible=1";
+        $this->get_results_from_query();
+        $r= $this->rows;
+        return $r;
+    }
+
+    public function actualizarHomologacion($sujeto,$datos){
+		$this->query="
+		UPDATE
+		t_opinion_valor
+		SET
+		sOpinionValor='$datos'
+		WHERE
+		fkSujeto = '$sujeto'
+		";
+		$result = $this->execute_single_query();
+		return $result;
+    }
+
 }
 ?>

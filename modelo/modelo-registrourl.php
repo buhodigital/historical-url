@@ -4,10 +4,10 @@ require_once('modelo/conexion.php');
 class ModeloRegistroUrl extends Conexion { 
     public function registrarUrl($datos,$url_id){
         //t_url=>fkUsuario, sUrl, sShortUrl, sNombreCliente, sNota, bDisponible	
-        //$datos=> sUrl, sNombreCliente, sNota, kUsuario	
+        //$datos=> sUrl, sNombreCliente, nSupConst, nSupTerr, nPrecioVenta, sNota, kUsuario
         $this->query="
-        INSERT INTO t_url (fkUsuario, sUrl, sShortUrl, sNombreCliente, sNota, bImg, bDisponible	 )
-        VALUES ('".$datos[3]."','".$datos[0]."','".$url_id."','".$datos[1]."','".$datos[2]."','1','1')
+        INSERT INTO t_url (fkUsuario, sUrl, sShortUrl, sNombreCliente, nSupConst, nSupTerr, nPrecioVenta, sNota, bImg, bDisponible	 )
+        VALUES ('".$datos[6]."','".$datos[0]."','".$url_id."','".$datos[1]."','".$datos[2]."','".$datos[3]."','".$datos[4]."','".$datos[5]."','1','1')
         ";
         $result=$this->execute_single_query();
         return $result;
@@ -68,12 +68,15 @@ class ModeloRegistroUrl extends Conexion {
     }
 
     public function actualizarNota($datos){
-        //$datos=> kUrl, sNombreCliente, sNota
+        //$datos=> kUrl, sNombreCliente, nSupConst, nSupTerr, nPrecioVenta, sNota
         $this->query="
         UPDATE t_url
         SET 
         sNombreCliente = '$datos[1]', 
-        sNota = '$datos[2]'
+        nSupConst = '$datos[2]',
+        nSupTerr = '$datos[3]',
+        nPrecioVenta = '$datos[4]',
+        sNota = '$datos[5]'
         WHERE kUrl = '$datos[0]';
         ";
         $result=$this->execute_single_query();
