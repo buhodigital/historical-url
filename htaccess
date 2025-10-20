@@ -1,0 +1,16 @@
+Options -Indexes
+
+RewriteEngine On
+
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f  
+
+# Ejemplos de reglas de reescritura
+RewriteRule ^([-a-zA-Z0-9]+)$ index.php?enlace=$1
+#RewriteRule ^ejemplo-carpeta/(.+)/([-a-zA-Z0-9]+)/(.+)/(.+)$ index.php?seccion=$1&articulo=$2&extra=$3&ultimo=$4
+
+# Reglas de reescritura
+RewriteRule ^valuacion/([-a-zA-Z0-9]+)$ index.php?opcion=$1
+RewriteRule ^core/([-a-zA-Z0-9]+)$ index.php?action=$1
+RewriteRule ^option/([-a-zA-Z0-9]+)/(.+)/(.+)$ index.php?ruta=$1&action=$2&status=$3
+#RewriteRule ^r/([-a-zA-Z0-9]+)$ index.php?redireccionamiento=$1
