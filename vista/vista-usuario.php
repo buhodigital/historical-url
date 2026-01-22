@@ -8,9 +8,14 @@ if(isset($_GET['ruta']) && $_GET['ruta']=='usuario'){
         case 'actualizar':
             //Prevenir error al refrescar la página, si no tiene datos recibidos de post redirecciona
             isset($_POST['kUsuario']) ? :header("Location:".$GLOBALS['url']."/option/usuario/datos/0");
-            //recoje los datos en un array
-            $datos=array();
-            array_push($datos,$_POST['kUsuario'],$_POST['sNombre'],$_POST['sPassword'],$_POST['sEmail'],$_POST['nRol']);
+            //recoje los datos en un array asociativo
+            $datos = array(
+                'kUsuario' => $_POST['kUsuario'],
+                'sNombre' => $_POST['sNombre'],
+                'sPassword' => $_POST['sPassword'],
+                'sEmail' => $_POST['sEmail'],
+                'nRol' => $_POST['nRol']
+            );
             $vista->actualizarUsuario($datos);
         case 'nuevousuario':
             #mostrar formulario para nuevo usuario
@@ -22,10 +27,14 @@ if(isset($_GET['ruta']) && $_GET['ruta']=='usuario'){
             break;
         case 'registrarusuario':
             if(isset($_POST['sUsuario'])&&$_POST['sUsuario']!==""){
-                //recoje los datos en un array
-                //sUsuario, sNombre, nRol, sPassword, sEmail,dateRegistered, bDisponible
-                $datos=array();
-                array_push($datos,$_POST['sUsuario'],$_POST['sNombre'],$_POST['nRol'],$_POST['sPassword'],$_POST['sEmail']);
+                //recoje los datos en un array asociativo
+                $datos = array(
+                    'sUsuario' => $_POST['sUsuario'],
+                    'sNombre' => $_POST['sNombre'],
+                    'nRol' => $_POST['nRol'],
+                    'sPassword' => $_POST['sPassword'],
+                    'sEmail' => $_POST['sEmail']
+                );
                 $vista->registrarUsuario($datos);
             }else{
                 header("Location:".$GLOBALS['url']."/option/usuario/lista/e");

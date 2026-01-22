@@ -129,7 +129,7 @@ CREATE TABLE `t_usuario` (
   `sUsuario` varchar(50) NOT NULL,
   `sNombre` varchar(50) NOT NULL,
   `nRol` tinyint(1) NOT NULL COMMENT '0=Master, 1=superuser, 2=user, 3=cobro, 4=operacion',
-  `sPassword` varchar(50) NOT NULL,
+  `sPassword` varchar(255) NOT NULL,
   `sEmail` varchar(60) NOT NULL,
   `dateRegistered` date NOT NULL,
   `bDisponible` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0=no disp, 1=disponible'
